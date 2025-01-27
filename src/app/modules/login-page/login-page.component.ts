@@ -14,7 +14,7 @@ import { LoginDto } from '../../common/types/all.types';
   templateUrl: './login-page.component.html',
 })
 export class LoginPageComponent {
-  credentials: LoginDto = { login: 'PROSYS', password: 'Prosys!23' };
+  credentials: LoginDto = { login: '', password: '' };
 
   constructor(
     private router: Router,
