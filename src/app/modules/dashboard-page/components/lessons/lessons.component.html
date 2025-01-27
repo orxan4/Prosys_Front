@@ -1,0 +1,35 @@
+<section class="h-full w-full overflow-auto rounded-md">
+    <table class="table-auto h-auto w-full">
+        <thead class="sticky top-0 ring-inset ring-1 shadow-md ring-gray-100 bg-white/95 text-left text-sm text-gray-900 whitespace-nowrap">
+        <tr>
+            <th class="py-4 px-2 sm:px-4 lg:px-6 border-b border-gray-200 font-medium border-separate">Code (of lesson)</th>
+            <th class="py-4 px-2 sm:px-4 lg:px-6 border-b border-gray-200 font-medium border-separate">Name (of lesson)</th>
+            <th class="py-4 px-2 sm:px-4 lg:px-6 border-b border-gray-200 font-medium border-separate">Class</th>
+            <th class="py-4 px-2 sm:px-4 lg:px-6 border-b border-gray-200 font-medium border-separate">Teacher Name</th>
+            <th class="py-4 px-2 sm:px-4 lg:px-6 border-b border-gray-200 font-medium border-separate">Teacher Surname</th>
+            <th class="py-4 px-2 sm:px-4 lg:px-6 border-b border-gray-200 font-medium border-separate"></th>
+        </tr>
+        </thead>
+        <tbody class="text-sm whitespace-nowrap text-gray-900">
+            @if (globalService.$lessons.value.length) {
+                @for ( lesson of globalService.$lessons.value; track lesson.id) {
+                    <tr>
+                        <td class="border border-l-0 border-gray-200 py-4 px-2 sm:px-4 lg:px-6 font-medium">{{ lesson.code }}</td>
+                        <td class="border border-gray-200 py-4 px-2 sm:px-4 lg:px-6 font-medium">{{ lesson.name }}</td>
+                        <td class="border border-gray-200 py-4 px-2 sm:px-4 lg:px-6 font-medium">{{ lesson.class }}</td>
+                        <td class="border border-gray-200 py-4 px-2 sm:px-4 lg:px-6 font-medium">{{ lesson.teacherName }}</td>
+                        <td class="border border-gray-200 py-4 px-2 sm:px-4 lg:px-6 font-medium">{{ lesson.teacherSurname }}</td>
+                        <td class="border-b border-r-0 border-gray-200 py-4 px-2 sm:px-4 lg:px-6 font-medium flex gap-x-1">
+                            <button class="w-auto px-4 py-1.5 rounded-md bg-indigo-500 text-gray-50 hover:bg-indigo-600" (click)="openEditDialog(lesson)">Edit</button>
+                            <button class="w-auto px-4 py-1.5 rounded-md bg-red-400 text-gray-50 hover:bg-red-500" (click)="openDeleteDialog(lesson)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            } @else {
+                <tr>
+                    <td colspan="6" class="text-center py-4">NO DATA</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

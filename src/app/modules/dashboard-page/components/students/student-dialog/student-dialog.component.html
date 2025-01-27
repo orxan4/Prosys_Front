@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Student Details</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="studentForm" class="flex flex-col">
+    <mat-form-field>
+      <mat-label>Enter number of student</mat-label>
+      <input matInput placeholder="99999" formControlName="number" required />
+      <mat-error *ngIf="studentForm.get('number')?.invalid">
+        {{ getErrorMessage('number') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter name of student</mat-label>
+      <input matInput placeholder="Jax" formControlName="name" required />
+      <mat-error *ngIf="studentForm.get('name')?.invalid">
+        {{ getErrorMessage('name') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter surname of student</mat-label>
+      <input matInput placeholder="Ganizade" formControlName="surname" required />
+      <mat-error *ngIf="studentForm.get('surname')?.invalid">
+        {{ getErrorMessage('surname') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter class of student</mat-label>
+      <input matInput placeholder="11" formControlName="class" required />
+      <mat-error *ngIf="studentForm.get('class')?.invalid">
+        {{ getErrorMessage('class') }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" class="bg-red-600 text-white">Cancel</button>
+  <button
+    mat-button
+    class=" text-white"
+    [class] = "dataUnChanged.value || studentForm.invalid ? 'bg-gray-500' : 'bg-green-500'"
+    [disabled]="dataUnChanged.value || studentForm.invalid"
+    (click)="onSubmit()"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

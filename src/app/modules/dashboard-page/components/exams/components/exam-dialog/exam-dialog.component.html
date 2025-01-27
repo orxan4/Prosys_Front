@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Exam Details</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="examForm" class="flex flex-col">
+    <mat-form-field>
+      <mat-label>Pick an exam date</mat-label>
+      <input
+        matInput
+        placeholder="03.03.1994"
+        [matDatepicker]="picker"
+        [min]="minDate"
+        [max]="maxDate"
+        formControlName="examDate"
+      />
+      <mat-hint>DD.MM.YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select lesson</mat-label>
+      <mat-select formControlName="lessonCode" required>
+        <mat-option
+          *ngFor="let lesson of globalService.$lessons.value"
+          [value]="lesson.code"
+          >{{ lesson.code }} ({{ lesson.name }}, for class:
+          {{ lesson.class }})</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="examForm.get('lessonCode')?.invalid">
+        {{ getErrorMessage("lessonCode") }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select student by number</mat-label>
+      <mat-select formControlName="studentNumber" required>
+        <mat-option
+          *ngFor="let student of globalService.$students.value"
+          [value]="student.number"
+          >{{ student.number }} ({{ student.name }} {{ student.surname }}, in
+          class: {{ student.class }})</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="examForm.get('studentNumber')?.invalid">
+        {{ getErrorMessage("studentNumber") }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Mention grade of student</mat-label>
+      <input matInput placeholder="6" formControlName="grade" required />
+      <mat-error *ngIf="examForm.get('grade')?.invalid">
+        {{ getErrorMessage("grade") }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" class="bg-red-600 text-white">
+    Cancel
+  </button>
+  <button
+    mat-button
+    class="text-white"
+    [class]="
+      dataUnChanged.value || examForm.invalid ? 'bg-gray-500' : 'bg-green-500'
+    "
+    [disabled]="dataUnChanged.value || examForm.invalid"
+    (click)="onSubmit()"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

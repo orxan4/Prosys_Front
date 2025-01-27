@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Warning</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>You are going to delete one of {{ this.data.tableName }}</h3>
+  <p>This process is irreversible. Are you sure that you want to proceed?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="bg-green-600 text-white" mat-button (click)="onCancel()" >Cancel</button>
+  <button class="bg-red-400 text-white" mat-button (click)="onDelete()">Sure, delete</button>
+</mat-dialog-actions>
