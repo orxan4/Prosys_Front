@@ -66,8 +66,8 @@ export class DashboardPageComponent implements OnInit {
       data,
       disableClose: true,
       minWidth: 280,
-      maxWidth: 1200,
-      width: "100%",
+      maxWidth: 700,
+      width: "60%",
     });
 
     await firstValueFrom(dialogRef.afterClosed());
